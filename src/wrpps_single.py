@@ -6,7 +6,7 @@ import time
 import re
 
 
-class SerialReader:
+class WrPPSSingleDriver:
     def __init__(self, port='/dev/ttyACM0', baudrate=115200, timeout=1):
         """
         Initialize the serial reader with the given parameters.
@@ -90,7 +90,7 @@ class SerialReader:
 
 
 if __name__ == '__main__':
-    reader = SerialReader(port='/dev/ttyACM0', baudrate=115200)
+    reader = WrPPSSingleDriver(port='/dev/ttyACM0', baudrate=115200)
 
     try:
         reader.start_reading()
