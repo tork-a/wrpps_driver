@@ -28,6 +28,7 @@ class WrPPSSingleDriver:
                                         timeout=self.timeout)
             time.sleep(2)  # Wait for Arduino to reset
             print(f'Opened serial port: {self.port}')
+            self.print_port_info()
         except serial.SerialException as e:
             print(f'Failed to open serial port {self.port}: {e}')
             raise
@@ -42,6 +43,14 @@ class WrPPSSingleDriver:
         if self.serial and self.serial.is_open:
             self.serial.close()
             print(f'Closed serial port: {self.port}')
+
+    def print_port_info(self):
+        """
+        Print the serial port informations.
+        """
+        print(f'  port: {self.serial.name}')
+        for k, v in self.serial.get_settings().items():
+            print(f'  {k}: {v}')
 
     def start_reading(self):
         """
