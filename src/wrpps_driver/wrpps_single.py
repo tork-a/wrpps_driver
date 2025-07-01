@@ -71,8 +71,9 @@ class WrPPSSingleDriver:
                 if self.serial.in_waiting:
                     line = self.serial.readline().decode('utf-8', errors='ignore').strip()
                     data = self._parse_line(line)
+                    data_time = time.time()
                     if data:
-                        self._handle_data(data)
+                        self._handle_data(data, data_time)
                     else:
                         print(f'Ignored line: {line}')
             except Exception as e:
@@ -91,11 +92,12 @@ class WrPPSSingleDriver:
             }
         return None
 
-    def _handle_data(self, data):
+    def _handle_data(self, data, data_time):
         """
         Handle the parsed data (override this method if needed).
         """
-        print(f'Received: intensity={data["intensity"]}, tof={data["tof"]}')
+        print(
+            f'Received: time={data_time}, intensity={data["intensity"]}, tof={data["tof"]}')
 
 
 if __name__ == '__main__':
