@@ -3,7 +3,7 @@
 import rospy
 
 from wrpps_driver.wrpps_single import WrPPSSingleDriver
-from wrpps_driver.msg import Range
+from wrpps_driver.msg import WrPPS
 
 
 class WrPPSROSPublisher(WrPPSSingleDriver):
@@ -13,7 +13,7 @@ class WrPPSROSPublisher(WrPPSSingleDriver):
         self.frame_id = frame_id
 
         # Create ROS publishers for intensity and TOF data
-        self.range_pub = rospy.Publisher('~range', Range, queue_size=10)
+        self.range_pub = rospy.Publisher('~range', WrPPS, queue_size=10)
 
     def _handle_data(self, data, data_time):
         """
@@ -25,7 +25,7 @@ class WrPPSROSPublisher(WrPPSSingleDriver):
         sec_ = int(data_time)
         nanosec_ = int((data_time - sec_)*1e9)
 
-        msg = Range()
+        msg = WrPPS()
         msg.header.stamp = rospy.Time(sec_, nanosec_)
         msg.header.frame_id = self.frame_id
         if intensity is not None:
