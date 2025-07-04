@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import rospy
 
 from wrpps_driver.wrpps_single import WrPPSSingleDriver
