@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="port"      default="/dev/ttyACM0" />
+  <arg name="baudrate"  default="115200" />
+  <arg name="frame_id"  default="wrpps_sensor" />
+
+  <node name="wrpps_ros_publisher"
+        pkg="wrpps_driver"
+        type="wrpps_single_ros_publisher.py"
+        output="screen">
+    <param name="port"      value="$(arg port)" />
+    <param name="baudrate"  value="$(arg baudrate)" />
+    <param name="frame_id"  value="$(arg frame_id)" />
+  </node>
+
+</launch>
