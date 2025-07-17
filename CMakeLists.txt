@@ -21,7 +21,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
+catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -164,7 +164,7 @@ catkin_install_python(PROGRAMS
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-install(DIRECTORY src/
+install(DIRECTORY src/ src/wrpps_driver
   DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
   FILES_MATCHING PATTERN "*.py"
 )
